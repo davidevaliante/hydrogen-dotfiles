@@ -134,6 +134,7 @@ in with lib; {
       ''}
       bind = ${modifier},E,exec,emopicker9000
       bind = ${modifier}SHIFT, W, exec, wallsetter
+      bind = ${modifier},Escape,exec,swaylock
       bind = ${modifier},S,exec,screenshootin
       bind = ${modifier},D,exec,discord
       bind = ${modifier},O,exec,obs
