@@ -124,9 +124,8 @@ in with lib; {
       master {
         new_is_master = true
       }
-      bind = ${modifier},Return,exec,${terminal}
+      bind = ${modifier},Q,exec,${terminal}
       bind = ${modifier}SHIFT,Return,exec,rofi-launcher
-      bind = ${modifier}SHIFT,W,exec,web-search
       bind = ${modifier}SHIFT,N,exec,swaync-client -rs
       ${if browser == "google-chrome" then ''
 	      bind = ${modifier},W,exec,google-chrome-stable
@@ -134,6 +133,7 @@ in with lib; {
         bind = ${modifier},W,exec,${browser}
       ''}
       bind = ${modifier},E,exec,emopicker9000
+      bind = ${modifier}SHIFT, W, exec, wallsetter
       bind = ${modifier},S,exec,screenshootin
       bind = ${modifier},D,exec,discord
       bind = ${modifier},O,exec,obs
@@ -141,7 +141,7 @@ in with lib; {
       bind = ${modifier}SHIFT,G,exec,godot4
       bind = ${modifier},T,exec,thunar
       bind = ${modifier},M,exec,spotify
-      bind = ${modifier},Q,killactive,
+      bind = ${modifier},C,killactive,
       bind = ${modifier},P,pseudo,
       bind = ${modifier}SHIFT,I,togglesplit,
       bind = ${modifier},F,fullscreen,
