@@ -39,6 +39,20 @@
 
       # avoid vs code opening file in the same window
       "workbench.editor.enablePreview" = false;
+
+      "workbench.statusBar.visible" = true;
+      "git-graph.showStatusBarItem" = true;
+      "vscode-neovim.ctrlKeysForInsertMode" = [
+        "a"
+        "d"
+        "h"
+        "j"
+        "o"
+        "r"
+        "t"
+        "u"
+        "w"
+      ];
     };
 
     keybindings = [
