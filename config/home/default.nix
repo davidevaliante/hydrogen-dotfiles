@@ -23,6 +23,7 @@
     ./vscode.nix
     ./zoxide.nix
     ./direnv.nix
+    ./helix.nix
 
     # Place Home Files Like Pictures
     ./files.nix

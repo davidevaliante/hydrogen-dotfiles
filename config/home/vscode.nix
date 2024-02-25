@@ -57,10 +57,17 @@
 
     keybindings = [
       {
-          command = "vscode-neovim.compositeEscape1";
-          key = "j";
-          when = "neovim.mode == insert && editorTextFocus";
-          args = "j";
+        command = "vscode-neovim.compositeEscape1";
+        key = "j";
+        when = "neovim.mode == insert && editorTextFocus";
+        args = "j";
+      }
+
+      {
+        command = "vscode-neovim.send";
+        key = "ctrl+s";
+        when = "neovim.mode == insert && editorTextFocus";
+        args = "<Esc>:w<CR>";
       }
     ];
   };

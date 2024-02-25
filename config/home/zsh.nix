@@ -30,6 +30,9 @@ lib.mkIf (theShell == "zsh") {
       if [ -f $HOME/.zshrc-personal ]; then
         source $HOME/.zshrc-personal
       fi
+
+      gitaddcommit() { git add . && git commit -m "$1" }
+
       eval "$(starship init zsh)"
       eval "$(direnv hook zsh)"
       eval "$(zoxide init zsh)"
@@ -59,6 +62,7 @@ lib.mkIf (theShell == "zsh") {
       lal="lsd -al";
       ".."="cd ..";
       neofetch="neofetch --ascii_distro NixOS";
+      gac="gitaddcommit";
     };
   };
 }
