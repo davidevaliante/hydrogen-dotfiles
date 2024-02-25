@@ -4,7 +4,7 @@ let
   plugins = pkgs.vimPlugins;
   theme = config.colorScheme.palette;
 in {
-  programs.nixvim = {
+    programs.nixvim = {
     enable = true;
 
     globals.mapleader = " "; # Sets the leader key to space
@@ -14,6 +14,8 @@ in {
       number = true;         # Show line numbers
       relativenumber = true; # Show relative line numbers
       shiftwidth = 2;        # Tab width should be 2
+      expandtab = true;
+      tabstop = 2;
       softtabstop = 2;
       smartindent = true;
       wrap = false;
@@ -65,8 +67,8 @@ in {
         enable = true;
       };
       startup = { 
-	enable = true;
-	theme = "dashboard";
+        enable = true;
+        theme = "dashboard";
       };
       lint = {
         enable = true;
@@ -84,33 +86,35 @@ in {
           typscriptreact = ["prettier_eslint"];
         };
       };
+
       lsp = {
-	enable = true;
-	servers = {
-	  tsserver.enable = true;
-	  lua-ls.enable = true;
-	  bashls.enable = true;
-	  rust-analyzer = {
-	    enable = true;
-	    installRustc = true;
-	    installCargo = true;
-	  };
-	  nixd.enable = true;
-	  html.enable = true;
-	  ccls.enable = true;
-	  cmake.enable = true;
-	  csharp-ls.enable = true;
-	  cssls.enable = true;
-	  gopls.enable = true;
-	  jsonls.enable = true;
-	  pyright.enable = true;
-	  tailwindcss.enable = true;
-	};
+        enable = true;
+        servers = {
+          tsserver.enable = true;
+          lua-ls.enable = true;
+          bashls.enable = true;
+          rust-analyzer = {
+            enable = true;
+            installRustc = true;
+            installCargo = true;
+          };
+          nixd.enable = true;
+          html.enable = true;
+          ccls.enable = true;
+          cmake.enable = true;
+          csharp-ls.enable = true;
+          cssls.enable = true;
+          gopls.enable = true;
+          jsonls.enable = true;
+          pyright.enable = true;
+          tailwindcss.enable = true;
+        };
       };
+
       lsp-lines.enable = true;
       treesitter = {
-	enable = true;
-	nixGrammars = true;
+        enable = true;
+        nixGrammars = true;
       };
       nvim-cmp = {
 	enable = true;
@@ -128,6 +132,13 @@ in {
 	  };
 	};
       };
+      lsp-format.enable = true;
+      none-ls = {
+        enable = true;
+        enableLspFormat = true;
+      };
+
+      leap.enable = true;
     };
 
     # FOR NEOVIDE
@@ -215,6 +226,22 @@ in {
         key = "<S-Tab>";
         action = ":bprev<CR>";
         options.silent = false;
+      }
+      {
+        mode = "i";
+        key = "<C-s>";
+        action = " <Esc> :w<CR> :lua vim.lsp.buf.format()<CR>";
+      }
+      {
+        mode = "n";
+        key = "<C-s>";
+        action = ":w<CR> :lua vim.lsp.buf.format()<CR>";
+      }
+      {
+        mode = "n";
+        key = "<leader>qq";
+        action = ":qa!<CR>";
+        options.silent = true;
       }
     ];
   };

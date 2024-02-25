@@ -31,7 +31,6 @@
       "editor.fontFamily" = "JetBrainsMono Nerd Font";
       "editor.fontSize" = 14;
 
-
       # neovim settings
       "extensions.experimental.affinity" = {
         "asvetliakov.vscode-neovim" = 1;
