@@ -55,6 +55,13 @@ in {
         enable = true;
         keymaps = {
           "<leader>ff" = "find_files";
+          "<leader>gg" = "live_grep";
+          "<leader>fz" = "current_buffer_fuzzy_find"; 
+        };
+        extensions = {
+          fzf-native = {
+            enable = true;
+          };
         };
       };
       neo-tree.enable = true;
@@ -117,20 +124,20 @@ in {
         nixGrammars = true;
       };
       nvim-cmp = {
-	enable = true;
-	autoEnableSources = true;
-	sources = [
-	  { name = "nvim_lsp"; }
-	  { name = "path"; }
-	  { name = "buffer"; }
-	];
-	mapping = {
-	  "<CR>" = "cmp.mapping.confirm({ select = true })";
-	  "<Tab>" = {
-	    action = ''cmp.mapping.select_next_item()'';
-	    modes = [ "i" "s" ];
-	  };
-	};
+        enable = true;
+        autoEnableSources = true;
+        sources = [
+          { name = "nvim_lsp"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+        mapping = {
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
+          "<Tab>" = {
+            action = ''cmp.mapping.select_next_item()'';
+            modes = [ "i" "s" ];
+          };
+        };
       };
       lsp-format.enable = true;
       none-ls = {
@@ -139,6 +146,15 @@ in {
       };
 
       leap.enable = true;
+
+      toggleterm = {
+        enable = true;
+        highlights = {
+          Normal = {
+            guibg = "#${theme.base0F}";
+          };
+        };
+      }; 
     };
 
     # FOR NEOVIDE
@@ -230,18 +246,28 @@ in {
       {
         mode = "i";
         key = "<C-s>";
-        action = " <Esc> :w<CR> :lua vim.lsp.buf.format()<CR>";
+        action = "<Esc>:w<CR>:lua vim.lsp.buf.format()<CR>";
       }
       {
         mode = "n";
         key = "<C-s>";
-        action = ":w<CR> :lua vim.lsp.buf.format()<CR>";
+        action = ":w<CR>:lua vim.lsp.buf.format()<CR>";
       }
       {
         mode = "n";
         key = "<leader>qq";
         action = ":qa!<CR>";
         options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "<M-i>";
+        action = "<Cmd>:Toggleterm direction=float<CR>";
+      }
+      {
+        mode = "t";
+        key = "<M-i>";
+        action = <Cmd>":Toggleterm direction=float<CR>";
       }
     ];
   };
