@@ -154,6 +154,9 @@ in {
             guibg = "#${theme.base0F}";
           };
         };
+        floatOpts = {
+          border = "curved";
+        };
       }; 
     };
 
@@ -262,12 +265,37 @@ in {
       {
         mode = "n";
         key = "<M-i>";
-        action = "<Cmd>:Toggleterm direction=float<CR>";
+        action = "<cmd>:ToggleTerm direction=float<CR>";
       }
       {
         mode = "t";
         key = "<M-i>";
-        action = <Cmd>":Toggleterm direction=float<CR>";
+        action = "<cmd>:ToggleTerm direction=float<CR>";
+      }
+      {
+        mode = "n";
+        key = "<C-h>";
+        action = "<C-w><C-h>";
+      }
+      {
+        mode = "n";
+        key = "<C-j>";
+        action = "<C-w><C-j>";
+      }
+      {
+        mode = "n";
+        key = "<C-k>";
+        action = "<C-w><C-k>";
+      }
+      {
+        mode = "n";
+        key = "<C-l>";
+        action = "<C-w><C-l>";
+      }
+      {
+        mode = "n";
+        key = "<C-n>";
+        action = "<cmd>Neotree toggle<CR>";
       }
     ];
   };
