@@ -74,5 +74,23 @@ in {
     };
   };
 
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # godot (with spine) 3.5.2 dependencies
+      xorg.libXcursor
+      xorg.libXinerama
+      xorg.libXext
+      xorg.libXrandr
+      xorg.libXrender
+      xorg.libX11
+      xorg.libXi
+      libGL
+      alsa-lib
+      pulseaudio
+      eudev
+    ];
+  };
+
   system.stateVersion = "23.11";
 }
