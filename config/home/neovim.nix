@@ -9,6 +9,11 @@ in {
 
     globals.mapleader = " "; # Sets the leader key to space
     
+    highlight = {
+      VertSplit.fg = "#1e1e2e";
+      VertSplit.blend = 0;
+    };
+
     options = {
       clipboard="unnamedplus";
       number = true;         # Show line numbers
@@ -50,7 +55,9 @@ in {
     
     plugins = {
       barbecue.enable = true;
+
       gitsigns.enable = true;
+
       telescope = {
         enable = true;
         keymaps = {
@@ -64,19 +71,28 @@ in {
           };
         };
       };
+
       neo-tree.enable = true;
+
       indent-blankline.enable = true;
+
       nvim-colorizer.enable = true;
+
       nvim-autopairs.enable = true;
+
       nix.enable = true;
+
       comment-nvim.enable = true;
+
       lualine = {
         enable = true;
       };
+
       startup = { 
         enable = true;
         theme = "dashboard";
       };
+
       lint = {
         enable = true;
         lintersByFt = {
@@ -123,6 +139,7 @@ in {
         enable = true;
         nixGrammars = true;
       };
+
       nvim-cmp = {
         enable = true;
         autoEnableSources = true;
@@ -139,7 +156,9 @@ in {
           };
         };
       };
+
       lsp-format.enable = true;
+
       none-ls = {
         enable = true;
         enableLspFormat = true;
@@ -157,7 +176,11 @@ in {
         floatOpts = {
           border = "curved";
         };
-      }; 
+      };
+
+      illuminate = {
+        enable = true;
+      };
     };
 
     # FOR NEOVIDE
