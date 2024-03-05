@@ -342,6 +342,19 @@ in {
         key = "K";
         action = ":m '<-2<CR>gv=gv";
       }
+      # triggers lsp hover
+      {
+        mode = "n";
+        key = "K";
+        action = ":lua vim.lsp.buf.hover()<CR>";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "<leader>gd";
+        action = ":lua vim.lsp.buf.definition()<CR>";
+        options.silent = true;
+      }    
     ];
   };
 } 
