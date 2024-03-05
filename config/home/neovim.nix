@@ -4,7 +4,7 @@ let
   plugins = pkgs.vimPlugins;
   theme = config.colorScheme.palette;
 in {
-    programs.nixvim = {
+  programs.nixvim = {
     enable = true;
 
     globals.mapleader = " "; # Sets the leader key to space
@@ -259,32 +259,38 @@ in {
         action = "<cmd>Neotree reveal right<CR>";
         options.silent = false;
       }
+      # cycles through current buffers
       {
         key = "<Tab>";
         action = ":bnext<CR>";
         options.silent = false;
       }
+      # cycles through current buffers
       {
         key = "<S-Tab>";
         action = ":bprev<CR>";
         options.silent = false;
       }
+      # formats buffer on save
       {
         mode = "i";
         key = "<C-s>";
         action = "<Esc>:w<CR>:lua vim.lsp.buf.format()<CR>";
       }
+      # formats buffer on save
       {
         mode = "n";
         key = "<C-s>";
         action = ":w<CR>:lua vim.lsp.buf.format()<CR>";
       }
+      # fast quit
       {
         mode = "n";
         key = "<leader>qq";
         action = ":qa!<CR>";
         options.silent = true;
       }
+      # terminal toggle
       {
         mode = "n";
         key = "<M-i>";
@@ -295,30 +301,46 @@ in {
         key = "<M-i>";
         action = "<cmd>:ToggleTerm direction=float<CR>";
       }
+      # wasd movements for buffer
       {
         mode = "n";
         key = "<C-h>";
         action = "<C-w><C-h>";
       }
+      # wasd movements for buffer
       {
         mode = "n";
         key = "<C-j>";
         action = "<C-w><C-j>";
       }
+      # wasd movements for buffer
       {
         mode = "n";
         key = "<C-k>";
         action = "<C-w><C-k>";
       }
+      # wasd movements for buffer
       {
         mode = "n";
         key = "<C-l>";
         action = "<C-w><C-l>";
       }
+      # toggles the navigation tree
       {
         mode = "n";
         key = "<C-n>";
         action = "<cmd>Neotree toggle<CR>";
+      }
+      # wasd movements for buffer
+      {
+        mode = "v";
+        key = "J";
+        action = ":m '>+1<CR>gv=gv";
+      }
+      {
+        mode = "v";
+        key = "K";
+        action = ":m '<-2<CR>gv=gv";
       }
     ];
   };
