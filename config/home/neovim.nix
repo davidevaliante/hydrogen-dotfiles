@@ -55,6 +55,11 @@ in {
     
     plugins = {
       barbecue.enable = true;
+      
+      better-escape = {
+        enable = true;
+        mapping = ["jj"];
+      };
 
       gitsigns.enable = true;
 
@@ -82,7 +87,9 @@ in {
 
       nix.enable = true;
 
-      comment-nvim.enable = true;
+      comment-nvim = {
+        enable = true;
+      };
 
       lualine = {
         enable = true;
@@ -245,11 +252,43 @@ in {
         tabline = {},
         extensions = {},
       }
-    '';
+
+      function InsertCommentWithIndentationAndEnterInsertMode()
+        local current_line_num = vim.api.nvim_win_get_cursor(0)[1] - 1
+        local current_line = vim.api.nvim_buf_get_lines(0, current_line_num, current_line_num + 1, false)[1]
+        local indentation = current_line:match("^%s*")
+        
+        local ft = require('Comment.ft')
+        local U = require('Comment.utils')
+        local commentstring = ft.get(vim.bo.filetype, U.ctype.linewise)
+        
+        -- If commentstring is an array, use the first element (line comment)
+        if type(commentstring) == "table" then
+            commentstring = commentstring[1]
+        end
+        
+        -- Handle the case where the comment string includes a '%s' for substitution
+        local comment_prefix = commentstring:match("^(.*)%%s")
+        if comment_prefix then
+            commentstring = comment_prefix
+        else
+            commentstring = commentstring .. " "
+        end
+
+        -- Construct the full comment string with indentation and an additional space for typing
+        local full_comment_string = indentation .. commentstring .. " "
+
+        -- Insert the comment string above the current line
+        vim.api.nvim_buf_set_lines(0, current_line_num, current_line_num, false, {full_comment_string})
+        
+        -- Move the cursor to the comment line and enter insert mode
+        vim.api.nvim_win_set_cursor(0, {current_line_num + 1, #indentation + #commentstring})
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('A', true, false, true), 'n', false)
+      end
+      '';
 
     extraConfigVim = ''
       set noshowmode
-      inoremap jj <ESC>
     '';
 
     keymaps = [
@@ -349,12 +388,38 @@ in {
         action = ":lua vim.lsp.buf.hover()<CR>";
         options.silent = true;
       }
+      # jump to definition under keyword
       {
         mode = "n";
         key = "<leader>gd";
         action = ":lua vim.lsp.buf.definition()<CR>";
         options.silent = true;
-      }    
-    ];
+      }
+      # commenting stuff
+      {
+        mode = "n";
+        key = "<C-/>";
+        action = ":lua require('Comment.api').toggle.linewise.current()<CR>";
+        options.silent = true;
+      }
+      {
+        mode = "x";
+        key = "<C-/>";
+        action = ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "/e";
+        action = ":lua require('Comment.api').insert.linewise.eol()<CR>";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "/o";
+        action = ":lua InsertCommentWithIndentationAndEnterInsertMode()<CR>";
+        options.silent = true;
+      }
+   ];
   };
 } 
