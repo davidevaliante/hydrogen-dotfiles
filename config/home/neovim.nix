@@ -159,10 +159,7 @@ in {
         settings = {
           mapping = {
             "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<Tab>" = {
-              action = ''cmp.mapping.select_next_item()'';
-              modes = [ "i" "s" ];
-            };
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           };
           window = {
             completion = {
@@ -172,10 +169,10 @@ in {
             };
           };
           formatting = {
-            fields = [ "kind" "abbrv" "menu" ];
+            fields = ["kind" "abbr" "menu"];
             format = ''
               function(entry, vim_item)
-                local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+                local kind = require("lspkind").cmp_format({ mode = "symbol", maxwidth = 50 })(entry, vim_item)
                 local strings = vim.split(kind.kind, "%s", { trimempty = true })
                 kind.kind = " " .. (strings[1] or "") .. " "
                 kind.menu = "    (" .. (strings[2] or "") .. ")"
@@ -185,10 +182,6 @@ in {
             '';
           };
         };
-      };
-
-      lspkind = {
-        enable = true;
       };
 
       lsp-format.enable = true;
@@ -216,6 +209,10 @@ in {
         enable = true;
       };
     };
+
+    extraPlugins = with pkgs.vimPlugins; [
+      lspkind-nvim
+    ];
 
     # FOR NEOVIDE
     extraConfigLua = '' 
@@ -328,6 +325,8 @@ in {
         tabline = {},
         extensions = {},
       }
+
+      require('lspkind').init()
 
       function InsertCommentWithIndentationAndEnterInsertMode()
         local current_line_num = vim.api.nvim_win_get_cursor(0)[1] - 1
