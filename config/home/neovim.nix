@@ -147,7 +147,7 @@ in {
         nixGrammars = true;
       };
 
-      nvim-cmp = {
+      cmp = {
         enable = true;
         autoEnableSources = true;
         extraOptions.sources = [
@@ -155,40 +155,40 @@ in {
           { name = "path"; }
           { name = "buffer"; }
         ];
-        mapping = {
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
-          "<Tab>" = {
-            action = ''cmp.mapping.select_next_item()'';
-            modes = [ "i" "s" ];
+        
+        settings = {
+          mapping = {
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<Tab>" = {
+              action = ''cmp.mapping.select_next_item()'';
+              modes = [ "i" "s" ];
+            };
           };
-        };
-        window = {
-          completion = {
-            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
-            col_offset = -3;
-            side_padding = 0;
+          window = {
+            completion = {
+              winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
+              col_offset = -3;
+              side_padding = 0;
+            };
           };
-        };
-        formatting = {
-          fields = [ "kind" "abbrv" "menu" ];
-          format = ''
-            function(entry, vim_item)
-              local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-              local strings = vim.split(kind.kind, "%s", { trimempty = true })
-              kind.kind = " " .. (strings[1] or "") .. " "
-              kind.menu = "    (" .. (strings[2] or "") .. ")"
+          formatting = {
+            fields = [ "kind" "abbrv" "menu" ];
+            format = ''
+              function(entry, vim_item)
+                local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+                local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                kind.kind = " " .. (strings[1] or "") .. " "
+                kind.menu = "    (" .. (strings[2] or "") .. ")"
 
-              return kind
-            end
-          '';
+                return kind
+              end
+            '';
+          };
         };
       };
 
       lspkind = {
         enable = true;
-        cmp = {
-          enable = true;
-        };
       };
 
       lsp-format.enable = true;
