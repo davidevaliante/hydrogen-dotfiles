@@ -81,8 +81,6 @@ in {
 
       indent-blankline.enable = true;
 
-      
-
       nvim-colorizer.enable = true;
 
       nvim-autopairs.enable = true;
@@ -152,7 +150,7 @@ in {
       nvim-cmp = {
         enable = true;
         autoEnableSources = true;
-        sources = [
+        extraOptions.sources = [
           { name = "nvim_lsp"; }
           { name = "path"; }
           { name = "buffer"; }
@@ -164,27 +162,25 @@ in {
             modes = [ "i" "s" ];
           };
         };
-        settings = {
-          window = {
-            completion = {
-              winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
-              col_offset = -3;
-              side_padding = 0;
-            };
+        window = {
+          completion = {
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
+            col_offset = -3;
+            side_padding = 0;
           };
-          formatting = {
-            fields = [ "kind" "abbrv" "menu" ];
-            format = ''
-              function(entry, vim_item)
-                local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-                local strings = vim.split(kind.kind, "%s", { trimempty = true })
-                kind.kind = " " .. (strings[1] or "") .. " "
-                kind.menu = "    (" .. (strings[2] or "") .. ")"
+        };
+        formatting = {
+          fields = [ "kind" "abbrv" "menu" ];
+          format = ''
+            function(entry, vim_item)
+              local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+              local strings = vim.split(kind.kind, "%s", { trimempty = true })
+              kind.kind = " " .. (strings[1] or "") .. " "
+              kind.menu = "    (" .. (strings[2] or "") .. ")"
 
-                return kind
-              end
-            '';
-          };
+              return kind
+            end
+          '';
         };
       };
 
