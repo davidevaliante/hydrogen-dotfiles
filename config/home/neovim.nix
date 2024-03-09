@@ -34,10 +34,12 @@ in {
       updatetime = 50;
     };
 
-    colorschemes.catppuccin = {
-      enable = true;
-      flavour = "mocha";
-    };
+    colorschemes.oxocarbon.enable = true;
+    # colorschemes.catppuccin = {
+    #   enable = true;
+    #   flavour = "mocha";
+    #   transparentBackground = true;
+    # };
     # colorschemes.base16.enable = true;
     # colorschemes.base16.customColorScheme = {
     #   base00 = "#${theme.base00}";

@@ -20,7 +20,7 @@ in lib.mkIf (wezterm == false && alacritty == false
     };
     extraConfig = ''
       foreground #${palette.base05}
-      background #${palette.base00}
+      background #161616
       color0  #${palette.base03}
       color1  #${palette.base08}
       color2  #${palette.base0B}
@@ -63,6 +63,7 @@ in lib.mkIf (wezterm == false && alacritty == false
       inactive_tab_foreground #${palette.base07}
       inactive_tab_background #${palette.base00}
       tab_bar_background #${palette.base00}
+      allow_remote_control yes
 
       window_padding_width 8
     '';
