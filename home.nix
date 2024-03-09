@@ -20,7 +20,6 @@ in {
     inputs.nixvim.homeManagerModules.nixvim
     inputs.hyprland.homeManagerModules.default
     ./config/home
-    ./config/home/configs
   ];
 
   # Define Settings For Xresources
