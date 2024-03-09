@@ -11,7 +11,15 @@ local colors = {
   grey   = '#${theme.base02}',
 }
 
+-- local function my_function()
+--   print("This is executed after 2 seconds!")
+--   -- -- Customization for Pmenu
+--   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ee5396", fg = "#f2f4f8" })
+--   vim.api.nvim_set_hl(0, "Pmenu", { fg = "#525252", bg = "#262626" })
+-- end
 
+-- Schedule my_function to run after 2000 milliseconds (2 seconds)
+-- vim.defer_fn(my_function, 2000)
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
@@ -21,12 +29,13 @@ cmp.event:on(
 )
 
 -- -- Customization for Pmenu
-vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ee5396", fg = "NONE" })
+vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ee5396", fg = "#393939" })
 vim.api.nvim_set_hl(0, "Pmenu", { fg = "#525252", bg = "#262626" })
 --
 -- vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
 -- NOTE: this controls the match part of the completion
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })
+vim.api.nvim_set_hl(0, "CmpDocNormal", { fg = "NONE", bg = "#262626" })
 -- vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#82AAFF", bg = "NONE", bold = true })
 -- vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
 --

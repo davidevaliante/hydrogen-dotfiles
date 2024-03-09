@@ -42,22 +42,22 @@ in {
     # };
     # colorschemes.base16.enable = true;
     # colorschemes.base16.customColorScheme = {
-    #   base00 = "#${theme.base00}";
-    #   base01 = "#${theme.base01}";
-    #   base02 = "#${theme.base02}";
-    #   base03 = "#${theme.base03}";
-    #   base04 = "#${theme.base04}";
-    #   base05 = "#${theme.base05}";
-    #   base06 = "#${theme.base06}";
-    #   base07 = "#${theme.base07}";
-    #   base08 = "#${theme.base08}";
-    #   base09 = "#${theme.base09}";
-    #   base0A = "#${theme.base0A}";
-    #   base0B = "#${theme.base0B}";
-    #   base0C = "#${theme.base0C}";
-    #   base0D = "#${theme.base0D}";
-    #   base0E = "#${theme.base0E}";
-    #   base0F = "#${theme.base0F}";
+    #   base00 = "#161616";
+    #   base01 = "#262626";
+    #   base02 = "#393939";
+    #   base03 = "#525252";
+    #   base04 = "#dde1e6";
+    #   base05 = "#f2f4f8";
+    #   base06 = "#ffffff";
+    #   base07 = "#08bdba";
+    #   base08 = "#3ddbd9";
+    #   base09 = "#78a9ff";
+    #   base0A = "#ee5396";
+    #   base0B = "#33b1ff";
+    #   base0C = "#ff7eb6";
+    #   base0D = "#42be65";
+    #   base0E = "#be95ff";
+    #   base0F = "#82cfff";
     # };
     
     plugins = {
@@ -161,6 +161,7 @@ in {
         autoEnableSources = true;
         extraOptions.sources = [
           { name = "nvim_lsp"; }
+          { name = "luasnip"; }
           { name = "path"; }
           { name = "buffer"; }
         ];
@@ -173,9 +174,11 @@ in {
           };
           window = {
             completion = {
-              winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None";
-              col_offset = -3;
-              side_padding = 0;
+                col_offset = -3;
+                side_padding = 0;
+              };
+            documentation = {
+              winhighlight = "Normal:CmpDocNormal";
             };
           };
           formatting = {
@@ -185,7 +188,7 @@ in {
                 local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
                 local strings = vim.split(kind.kind, "%s", { trimempty = true })
                 kind.kind = " " .. (strings[1] or "") .. " "
-                kind.menu = "    (" .. (strings[2] or "") .. ")"
+                kind.menu = "    [" .. (strings[2] or "") .. "]"
 
                 return kind
               end
