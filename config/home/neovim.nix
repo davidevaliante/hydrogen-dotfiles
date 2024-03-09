@@ -3,7 +3,7 @@
 let
   plugins = pkgs.vimPlugins;
   theme = config.colorScheme.palette;
-  extraLuaConfig = builtins.readFile ./neovim-config;
+  extraLuaConfig = builtins.readFile ./configs/neovim.lua;
 in {
   programs.nixvim = {
     enable = true;

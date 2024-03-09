@@ -24,7 +24,6 @@
     ./zoxide.nix
     ./direnv.nix
     ./helix.nix
-    ./configs.nix
     # Place Home Files Like Pictures
     ./files.nix
   ];
