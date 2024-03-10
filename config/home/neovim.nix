@@ -70,7 +70,6 @@ in {
         autoHide = true;
         insertAtEnd = true;
         animation = false;
-
         icons = {
           separator.left = "@";
           diagnostics = {
@@ -407,6 +406,13 @@ in {
         mode = "n";
         key = "/o";
         action = ":lua InsertCommentWithIndentationAndEnterInsertMode()<CR>";
+        options.silent = true;
+      }
+      # barbar
+      {
+        mode = "n";
+        key = "<M-c>";
+        action = ":BufferClose<CR>";
         options.silent = true;
       }
    ];
