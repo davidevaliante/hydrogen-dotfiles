@@ -158,7 +158,7 @@ in {
       };
 
       cmp_luasnip.enable = true;
-
+      luasnip.enable = true;
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -172,7 +172,8 @@ in {
         settings = {
           mapping = {
             "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<Tab>" = ''cmp.mapping(function(fallback) HandleCmpTab(fallback) end, {'i', 's'})'';
+            # "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           };
           window = {
@@ -205,9 +206,17 @@ in {
           '';
         };
       };
-
-      copilot-vim = {
+        
+      copilot-lua = {
         enable = true;        
+        suggestion = {
+          enabled = true;
+          autoTrigger = true;
+          keymap = {
+            accept = false;
+            acceptLine = "<S-Tab>";
+          };
+        };
       };
 
       lsp-format.enable = true;
