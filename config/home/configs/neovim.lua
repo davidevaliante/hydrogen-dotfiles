@@ -12,6 +12,21 @@ local colors = {
 }
 
 
+-- Indent BlankLine
+local hooks = require "ibl.hooks"
+hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+  vim.api.nvim_set_hl(0, 'CurrentScope', { fg = "#fc5ef3" })
+end)
+
+hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+
+require('ibl').update {
+  scope = {
+    highlight = "CurrentScope"
+  }
+}
+
+-- Autopairs
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
 cmp.event:on(
@@ -19,6 +34,7 @@ cmp.event:on(
   cmp_autopairs.on_confirm_done()
 )
 
+-- CMP HL Groups
 -- -- Customization for Pmenu
 vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ee5396", fg = "#393939" })
 vim.api.nvim_set_hl(0, "Pmenu", { fg = "#525252", bg = "#262626" })
@@ -62,7 +78,8 @@ vim.api.nvim_set_hl(0, "CmpDocNormal", { fg = "NONE", bg = "#262626" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#D8EEEB", bg = "#58B5A8" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
---
+
+
 
 local bubbles_theme = {
   normal = {

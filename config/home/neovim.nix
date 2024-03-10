@@ -61,9 +61,8 @@ in {
     # };
     
     plugins = {
-      auto-session = {
-        enable = true;
-      };
+      auto-session.enable = true;
+
       barbecue.enable = true;
       
       better-escape = {
@@ -92,7 +91,13 @@ in {
         autoCleanAfterSessionRestore = true;
       };
 
-      indent-blankline.enable = true;
+      indent-blankline = {
+        enable = true;
+        scope = {
+          showStart = false;
+          showEnd = false;
+        };
+      };
 
       nvim-colorizer.enable = true;
 
@@ -158,7 +163,9 @@ in {
       };
 
       cmp_luasnip.enable = true;
+
       luasnip.enable = true;
+      
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -173,7 +180,6 @@ in {
           mapping = {
             "<CR>" = "cmp.mapping.confirm({ select = true })";
             "<Tab>" = ''cmp.mapping(function(fallback) HandleCmpTab(fallback) end, {'i', 's'})'';
-            # "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           };
           window = {
