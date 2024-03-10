@@ -151,10 +151,13 @@ in {
       };
 
       lsp-lines.enable = true;
+      
       treesitter = {
         enable = true;
         nixGrammars = true;
       };
+
+      cmp_luasnip.enable = true;
 
       cmp = {
         enable = true;
@@ -176,6 +179,7 @@ in {
             completion = {
                 col_offset = -3;
                 side_padding = 0;
+                expandable_indicator = true;
               };
             documentation = {
               winhighlight = "Normal:CmpDocNormal";
@@ -194,7 +198,16 @@ in {
               end
             '';
           };
+          snippet.expand = ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+          '';
         };
+      };
+
+      copilot-vim = {
+        enable = true;        
       };
 
       lsp-format.enable = true;

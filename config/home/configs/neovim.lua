@@ -1,5 +1,4 @@
 vim.opt.guifont = "JetBrainsMono\\ NFM,Noto_Color_Emoji:h14"
-vim.g.neovide_cursor_animation_length = 0.05
 
 local colors = {
   blue   = '#${theme.base0D}',
@@ -11,15 +10,6 @@ local colors = {
   grey   = '#${theme.base02}',
 }
 
--- local function my_function()
---   print("This is executed after 2 seconds!")
---   -- -- Customization for Pmenu
---   vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ee5396", fg = "#f2f4f8" })
---   vim.api.nvim_set_hl(0, "Pmenu", { fg = "#525252", bg = "#262626" })
--- end
-
--- Schedule my_function to run after 2000 milliseconds (2 seconds)
--- vim.defer_fn(my_function, 2000)
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
