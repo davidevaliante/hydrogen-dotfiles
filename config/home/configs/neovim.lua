@@ -138,6 +138,12 @@ require('lualine').setup {
 
 require('lspkind').init()
 
+-- Copilot Chat
+require("CopilotChat").setup {
+  debug = true, -- Enable debugging
+  -- See Configuration section for rest
+}
+
 
 function InsertTab()
   if require("copilot.suggestion").is_visible() then

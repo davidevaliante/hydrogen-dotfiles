@@ -186,6 +186,7 @@ in {
         enable = true;
         autoEnableSources = true;
         extraOptions.sources = [
+          # { name = "copilot"; }
           { name = "nvim_lsp"; }
           { name = "luasnip"; }
           { name = "path"; }
@@ -228,6 +229,10 @@ in {
           '';
         };
       };
+
+      copilot-cmp = {
+        enable = false;
+      };
         
       copilot-lua = {
         enable = true;        
@@ -239,6 +244,7 @@ in {
             acceptLine = "<S-Tab>";
           };
         };
+        panel.enabled = false;
       };
 
       lsp-format.enable = true;
@@ -270,6 +276,15 @@ in {
     extraPlugins = with pkgs.vimPlugins; [
       lspkind-nvim
       lualine-nvim
+      (pkgs.vimUtils.buildVimPlugin {
+          name = "copilot-chat";
+          src = pkgs.fetchFromGitHub {
+              owner = "CopilotC-Nvim";
+              repo = "CopilotChat.nvim";
+              rev = "8206d4eeed8f815e62a933862bebfa6919eb2b6f";
+              hash = "sha256-9nr5eruyOk3nWFyfyXLf+TotOEUr1/x9izuKDd66mGk=";
+          };
+      })
     ];
 
     # FOR NEOVIDE
