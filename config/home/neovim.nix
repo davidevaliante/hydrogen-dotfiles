@@ -64,6 +64,23 @@ in {
       auto-session.enable = true;
 
       barbecue.enable = true;
+
+      barbar = {
+        enable = true;
+        autoHide = true;
+        insertAtEnd = true;
+        animation = false;
+
+        icons = {
+          separator.left = "@";
+          diagnostics = {
+            error = {
+              enable = true;
+              icon = "";
+            };
+          };
+        };
+      };
       
       better-escape = {
         enable = true;
@@ -274,13 +291,13 @@ in {
       {
         key = "<Tab>";
         action = ":bnext<CR>";
-        options.silent = false;
+        options.silent = true;
       }
       # cycles through current buffers
       {
         key = "<S-Tab>";
         action = ":bprev<CR>";
-        options.silent = false;
+        options.silent = true;
       }
       # formats buffer on save
       {

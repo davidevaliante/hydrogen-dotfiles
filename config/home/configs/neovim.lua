@@ -79,7 +79,15 @@ vim.api.nvim_set_hl(0, "CmpDocNormal", { fg = "NONE", bg = "#262626" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
 -- vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
 
+-- barbar HL Groups
+vim.api.nvim_set_hl(0, "BufferInactive", { fg = "#525252", bg = "NONE" })
+vim.api.nvim_set_hl(0, "BufferCurrentSign", { fg = "#ee5396", bg = "NONE" })
+vim.api.nvim_set_hl(0, "BufferCurrent", { fg = "#ffffff", bg = "NONE", bold = true })
+vim.api.nvim_set_hl(0, "BufferInactiveSign", { fg = "#363636", bg = "NONE" })
+vim.api.nvim_set_hl(0, "BufferTabpageFill", { fg = "NONE", bg = "NONE" })
 
+-- neo-tree HL Groups
+vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { fg = "#ee5396", bg = "NONE" })
 
 local bubbles_theme = {
   normal = {
@@ -183,7 +191,6 @@ local function has_words_before()
 end
 
 function HandleCmpTab(fallback)
-  print("HandleCmpTab")
   if cmp.visible() then
     cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
   elseif luasnip.expandable() then
