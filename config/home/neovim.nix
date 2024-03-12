@@ -35,31 +35,7 @@ in {
     };
 
     colorschemes.oxocarbon.enable = true;
-    # colorschemes.catppuccin = {
-    #   enable = true;
-    #   flavour = "mocha";
-    #   transparentBackground = true;
-    # };
-    # colorschemes.base16.enable = true;
-    # colorschemes.base16.customColorScheme = {
-    #   base00 = "#161616";
-    #   base01 = "#262626";
-    #   base02 = "#393939";
-    #   base03 = "#525252";
-    #   base04 = "#dde1e6";
-    #   base05 = "#f2f4f8";
-    #   base06 = "#ffffff";
-    #   base07 = "#08bdba";
-    #   base08 = "#3ddbd9";
-    #   base09 = "#78a9ff";
-    #   base0A = "#ee5396";
-    #   base0B = "#33b1ff";
-    #   base0C = "#ff7eb6";
-    #   base0D = "#42be65";
-    #   base0E = "#be95ff";
-    #   base0F = "#82cfff";
-    # };
-    
+   
     plugins = {
       auto-session.enable = true;
 
@@ -171,7 +147,9 @@ in {
         };
       };
 
-      lsp-lines.enable = true;
+      trouble = {
+        enable = true;
+      };
       
       treesitter = {
         enable = true;
@@ -252,6 +230,29 @@ in {
       none-ls = {
         enable = true;
         enableLspFormat = true;
+        onAttach = ''
+          function(client, bufnr)
+            if client.supports_method("textDocument/formatting") then
+              vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                  -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                  -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
+                  -- vim.lsp.buf.formatting_sync()
+                  vim.lsp.buf.format({ async = false })
+                end,
+              })
+            end
+          end'';
+        sources = {
+          formatting = {
+            prettierd = {
+              enable = true;
+            };
+          };
+        };
       };
 
       leap.enable = true;
@@ -276,6 +277,7 @@ in {
     extraPlugins = with pkgs.vimPlugins; [
       lspkind-nvim
       lualine-nvim
+      ChatGPT-nvim
       (pkgs.vimUtils.buildVimPlugin {
           name = "copilot-chat";
           src = pkgs.fetchFromGitHub {
@@ -317,13 +319,13 @@ in {
       {
         mode = "i";
         key = "<C-s>";
-        action = "<ESC>:lua SaveAndFormat()<CR>";
+        action = "<ESC>:w<CR>";
       }
       # formats buffer on save
       {
         mode = "n";
         key = "<C-s>";
-        action = ":lua SaveAndFormat()<CR>";
+        action = ":w<CR>";
       }
       # fast quit
       {
@@ -430,6 +432,13 @@ in {
         action = ":BufferClose<CR>";
         options.silent = true;
       }
-   ];
+      # trouble
+      {
+        mode = "n";
+        key = "<C-t>";
+        action = ":Trouble<CR>";
+        options.silent = true;
+      }
+    ];
   };
 } 

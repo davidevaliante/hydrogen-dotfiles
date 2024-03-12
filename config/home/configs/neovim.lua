@@ -144,6 +144,11 @@ require("CopilotChat").setup {
   -- See Configuration section for rest
 }
 
+-- Chat GPT
+-- require("chatgpt").setup {
+--   api_key_cmd = "gpg --decrypt ~/chatgptkey.txt.gpg"
+-- }
+
 
 function InsertTab()
   if require("copilot.suggestion").is_visible() then
@@ -207,3 +212,15 @@ function HandleCmpTab(fallback)
     fallback()
   end
 end
+
+-- Autocommands
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
