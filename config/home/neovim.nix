@@ -46,6 +46,7 @@ in {
         autoHide = true;
         insertAtEnd = true;
         animation = false;
+        excludeFileNames = ["neo-tree" "Trouble" "toggleterm"];
         icons = {
           separator.left = "@";
           diagnostics = {
@@ -101,10 +102,10 @@ in {
         enable = true;
       };
 
-      startup = { 
-        enable = true;
-        theme = "dashboard";
-      };
+      # startup = { 
+      #   enable = true;
+      #   theme = "dashboard";
+      # };
 
       lint = {
         enable = true;
@@ -145,6 +146,11 @@ in {
           pyright.enable = true;
           tailwindcss.enable = true;
         };
+      };
+      
+      lspsaga = {
+        enable = true;
+        lightbulb.enable = false;
       };
 
       trouble = {
@@ -437,6 +443,25 @@ in {
         mode = "n";
         key = "<C-t>";
         action = ":Trouble<CR>";
+        options.silent = true;
+      }
+      # lsp-saga
+      {
+        mode = "n";
+        key = "<leader>ca";
+        action = ":Lspsaga code_action<CR>";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "<S-k>";
+        action = ":Lspsaga hover_doc<CR>";
+        options.silent = true;
+      }
+      {
+        mode = "n";
+        key = "<C-o><C-t>";
+        action = ":Lspsaga outline<CR>";
         options.silent = true;
       }
     ];
